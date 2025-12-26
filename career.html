@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Career Quiz</title>
+</head>
+<body>
+
+<h1>Which Career Should You Pursue?</h1>
+
+<div id="quiz">
+  <p id="question"></p>
+  
+  <button onclick="answer(0)" id="btn0"></button>
+  <button onclick="answer(1)" id="btn1"></button>
+  <button onclick="answer(2)" id="btn2"></button>
+</div>
+
+<p id="result"></p>
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+// 10 questions with options and category mapping
+const questions = [
+  { q: "Do you enjoy solving problems with technology?", options: ["Yes, a lot", "Sometimes", "Not really"], key: ["Tech", "Art", "Helping"] },
+  { q: "Do you like creating art or writing?", options: ["Yes, very much", "Sometimes", "Not really"], key: ["Art", "Tech", "Helping"] },
+  { q: "Do you enjoy helping others?", options: ["Yes, always", "Sometimes", "Not really"], key: ["Helping", "Art", "Tech"] },
+  { q: "Do you like working with computers?", options: ["Yes", "Sometimes", "No"], key: ["Tech", "Helping", "Art"] },
+  { q: "Do you enjoy music, painting, or creative hobbies?", options: ["Yes", "Sometimes", "No"], key: ["Art", "Tech", "Helping"] },
+  { q: "Would you like a career that impacts people directly?", options: ["Yes", "Sometimes", "No"], key: ["Helping", "Tech", "Art"] },
+  { q: "Do you like learning coding or math?", options: ["Yes", "Sometimes", "Not really"], key: ["Tech", "Art", "Helping"] },
+  { q: "Do you enjoy storytelling, writing, or designing?", options: ["Yes", "Sometimes", "No"], key: ["Art", "Helping", "Tech"] },
+  { q: "Do you like volunteering or social work?", options: ["Yes", "Sometimes", "No"], key: ["Helping", "Art", "Tech"] },
+  { q: "Would you enjoy building something new or inventing?", options: ["Yes", "Sometimes", "Not really"], key: ["Tech", "Art", "Helping"] }
+];
+
+let score = {Tech: 0, Art: 0, Helping: 0};
+let current = 0;
+
+function showQuestion() {
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  document.getElementById("question").innerText = questions[current].q;
+  for (let i = 0; i < 3; i++) {
+    document.getElementById("btn"+i).innerText = questions[current].options[i];
+  }
+}
+
+function answer(choice) {
+  const category = questions[current].key[choice];
+  score[category]++;
+  current++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("quiz").style.display = "none";
+  const maxScore = Math.max(...Object.values(score));
+  const finalCategory = Object.keys(score).filter(k => score[k] === maxScore)[0];
+  const results = {
+    Tech: "You have a strong interest in Technology! Careers like Software Developer, Engineer, or Data Analyst might suit you. 💻",
+    Art: "You are creative and artistic! Careers like Designer, Writer, Musician, or Artist may be perfect for you. 🎨",
+    Helping: "You enjoy helping others! Careers like Teacher, Doctor, Social Worker, or Counselor could be ideal. 🤝"
+  };
+  document.getElementById("result").innerText = results[finalCategory];
+}
+
+// Start the quiz
+showQuestion();
+</script>
+
+</body>
+</html>
