@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Church Selector Quiz</title>
+</head>
+<body>
+
+<h1>Which Church Should You Go To?</h1>
+
+<div id="quiz">
+  <p id="question"></p>
+  
+  <button onclick="answer(0)" id="btn0"></button>
+  <button onclick="answer(1)" id="btn1"></button>
+  <button onclick="answer(2)" id="btn2"></button>
+</div>
+
+<p id="result"></p>
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+const questions = [
+  {
+    q: "What is most important to you in a church?",
+    options: ["Community Feeling", "Good Music", "Strong Teaching"]
+  },
+  {
+    q: "How far are you willing to travel?",
+    options: ["Near my home", "Within town", "Anywhere for the right church"]
+  },
+  {
+    q: "Which activity excites you the most?",
+    options: ["Social gatherings", "Singing & music", "Bible study"]
+  }
+];
+
+let current = 0;
+
+function showQuestion() {
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  document.getElementById("question").innerText = questions[current].q;
+  for (let i = 0; i < 3; i++) {
+    document.getElementById("btn"+i).innerText = questions[current].options[i];
+  }
+}
+
+function answer(choice) {
+  current++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("result").innerText =
+    "Based on your answers, the best church for you is:\n\nThe Church of Jesus Christ of Latter-Day Saints ⛪";
+}
+
+// Start the quiz
+showQuestion();
+</script>
+
+</body>
+</html>
