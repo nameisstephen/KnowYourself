@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Choose Your Stream After 10th</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Which Stream Should You Choose After 10th?</h1>
+
+<div id="quiz">
+  <p id="question"></p>
+
+  <button onclick="answer(0)" id="btn0"></button>
+  <button onclick="answer(1)" id="btn1"></button>
+  <button onclick="answer(2)" id="btn2"></button>
+</div>
+
+<p id="result"></p>
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+// 20 questions with options and category mapping
+const questions = [
+  { q: "Do you enjoy Mathematics and problem-solving?", options: ["Yes", "Sometimes", "Not really"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Are you interested in Biology and Life Sciences?", options: ["Yes", "Sometimes", "No"], key: ["BIPC", "MPC", "MEC"] },
+  { q: "Do you like Economics, Business, or Commerce?", options: ["Yes", "Sometimes", "No"], key: ["MEC", "CEC", "BIPC"] },
+  { q: "Do you enjoy Physics and Chemistry experiments?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "BIPC", "MEC"] },
+  { q: "Are you interested in Computers and Technology?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Do you like social studies and management subjects?", options: ["Yes", "Sometimes", "No"], key: ["CEC", "MEC", "BIPC"] },
+  { q: "Do you enjoy human anatomy and healthcare?", options: ["Yes", "Sometimes", "No"], key: ["BIPC", "MPC", "MEC"] },
+  { q: "Do you like statistics, finance, or business math?", options: ["Yes", "Sometimes", "No"], key: ["MEC", "MPC", "BIPC"] },
+  { q: "Do you enjoy logical thinking and engineering concepts?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Do you prefer science or commerce career paths?", options: ["Science", "Commerce", "Neither"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Are you interested in computer programming?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Do you enjoy conducting science experiments?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "BIPC", "MEC"] },
+  { q: "Do you like business planning or entrepreneurship?", options: ["Yes", "Sometimes", "No"], key: ["MEC", "CEC", "BIPC"] },
+  { q: "Are you passionate about helping people medically?", options: ["Yes", "Sometimes", "No"], key: ["BIPC", "MPC", "MEC"] },
+  { q: "Do you enjoy solving mathematical puzzles?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Are you interested in finance, accounting, or trade?", options: ["Yes", "Sometimes", "No"], key: ["MEC", "CEC", "BIPC"] },
+  { q: "Do you enjoy biology projects or research?", options: ["Yes", "Sometimes", "No"], key: ["BIPC", "MPC", "MEC"] },
+  { q: "Do you like technological innovation and robotics?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] },
+  { q: "Are you interested in social sciences, law, or civics?", options: ["Yes", "Sometimes", "No"], key: ["CEC", "MEC", "BIPC"] },
+  { q: "Do you enjoy analytical and logical thinking?", options: ["Yes", "Sometimes", "No"], key: ["MPC", "MEC", "BIPC"] }
+];
+
+let score = {MPC: 0, BIPC: 0, MEC: 0, CEC: 0};
+let current = 0;
+
+function showQuestion() {
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  document.getElementById("question").innerText = "Question " + (current+1) + " of " + questions.length + ":\n" + questions[current].q;
+  for (let i = 0; i < 3; i++) {
+    document.getElementById("btn"+i).innerText = questions[current].options[i];
+  }
+}
+
+function answer(choice) {
+  const category = questions[current].key[choice];
+  if(score[category] !== undefined) score[category]++;
+  current++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("quiz").style.display = "none";
+  const maxScore = Math.max(...Object.values(score));
+  const finalCategory = Object.keys(score).filter(k => score[k] === maxScore)[0];
+  const results = {
+    MPC: "You should consider MPC (Math, Physics, Chemistry) for Engineering, Computer Science, or related fields.",
+    BIPC: "You should consider BIPC (Biology, Physics, Chemistry) for Medicine, Pharmacy, or Life Sciences.",
+    MEC: "You should consider MEC (Math, Economics, Commerce) for Commerce, Business, or Management streams.",
+    CEC: "You should consider CEC (Civics, Economics, Commerce) for Social Sciences, Humanities, or Commerce careers."
+  };
+  document.getElementById("result").innerText = results[finalCategory];
+}
+
+// Start quiz
+showQuestion();
+</script>
+
+</body>
+</html>
