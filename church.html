@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Church Selector Quiz</title>
+  <title>Church Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,18 +21,16 @@
 
 <script>
 const questions = [
-  {
-    q: "What is most important to you in a church?",
-    options: ["Community Feeling", "Good Music", "Strong Teaching"]
-  },
-  {
-    q: "How far are you willing to travel?",
-    options: ["Near my home", "Within town", "Anywhere for the right church"]
-  },
-  {
-    q: "Which activity excites you the most?",
-    options: ["Social gatherings", "Singing & music", "Bible study"]
-  }
+  { q: "What is most important to you in a church?", options: ["Community Feeling", "Good Music", "Strong Teaching"] },
+  { q: "How far are you willing to travel?", options: ["Near my home", "Within town", "Anywhere for the right church"] },
+  { q: "Which activity excites you the most?", options: ["Social gatherings", "Singing & music", "Bible study"] },
+  { q: "Do you like youth programs or activities?", options: ["Yes", "Sometimes", "Not really"] },
+  { q: "Do you want a church with missionary opportunities?", options: ["Yes", "Maybe", "No"] },
+  { q: "Do you value regular scripture study?", options: ["Yes", "Sometimes", "Not really"] },
+  { q: "Are family-friendly programs important to you?", options: ["Yes", "Somewhat", "Not really"] },
+  { q: "Do you like volunteering or service activities?", options: ["Yes", "Sometimes", "No"] },
+  { q: "Do you prefer a structured worship service?", options: ["Yes", "Sometimes", "No"] },
+  { q: "Do you want a church with a strong global presence?", options: ["Yes", "Maybe", "No"] }
 ];
 
 let current = 0;
@@ -65,3 +63,5 @@ showQuestion();
 
 </body>
 </html>
+
+
