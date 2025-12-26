@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Music Quiz</title>
+</head>
+<body>
+
+<h1>Which Music Genre Suits You?</h1>
+
+<div id="quiz">
+  <p id="question"></p>
+  
+  <button onclick="answer(0)" id="btn0"></button>
+  <button onclick="answer(1)" id="btn1"></button>
+  <button onclick="answer(2)" id="btn2"></button>
+</div>
+
+<p id="result"></p>
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+// 8 questions with 3 options each
+const questions = [
+  { q: "What is your general mood most of the time?", options: ["Happy 😊", "Energetic ⚡", "Calm 🌙"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "Which activity do you enjoy the most?", options: ["Dancing or partying", "Sports or workouts", "Reading or relaxing"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "How do you usually listen to music?", options: ["Sing along", "Headphones, pumped up", "Softly, background"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "Pick your favorite time of day", options: ["Morning with energy", "Afternoon adrenaline", "Night peaceful"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "Your ideal weekend activity?", options: ["Going out with friends", "Sports or adventure", "Relax at home"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "Choose a color that appeals to you", options: ["Bright Yellow", "Red/Orange", "Blue/Green"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "How do you feel at parties?", options: ["I love them!", "I get excited", "I observe quietly"], key: ["Happy", "Energetic", "Calm"] },
+  { q: "Pick your favorite music mood", options: ["Upbeat & fun", "Powerful & intense", "Soft & soothing"], key: ["Happy", "Energetic", "Calm"] }
+];
+
+let score = {Happy: 0, Energetic: 0, Calm: 0};
+let current = 0;
+
+function showQuestion() {
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  document.getElementById("question").innerText = questions[current].q;
+  for (let i = 0; i < 3; i++) {
+    document.getElementById("btn"+i).innerText = questions[current].options[i];
+  }
+}
+
+function answer(choice) {
+  const category = questions[current].key[choice];
+  score[category]++;
+  current++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("quiz").style.display = "none";
+  const maxScore = Math.max(...Object.values(score));
+  const finalCategory = Object.keys(score).filter(k => score[k] === maxScore)[0];
+  const results = {
+    Happy: "You enjoy upbeat and cheerful music! Try Pop, Dance, or Indie genres. 🎤💃",
+    Energetic: "You love high-energy music! Rock, EDM, or Hip Hop will suit you. 🎸🎧",
+    Calm: "You prefer calm and soothing music. Try Classical, Lo-Fi, or Instrumental genres. 🎻🌙"
+  };
+  document.getElementById("result").innerText = results[finalCategory];
+}
+
+// Start the quiz
+showQuestion();
+</script>
+
+</body>
+</html>
