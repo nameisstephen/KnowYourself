@@ -1,0 +1,62 @@
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f6ff;
+  text-align: center;
+  padding: 20px;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  color: #2b3cff;
+}
+
+/* Paragraphs */
+p {
+  font-size: 18px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 18px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2b3cff;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1a28cc;
+}
+
+/* Links */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #2b3cff;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #1a28cc;
+  text-decoration: underline;
+}
+
+/* Quiz container */
+#quiz {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2b3cff;
+}
